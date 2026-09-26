@@ -14,3 +14,10 @@ Run PowerShell as Administrator and execute:
 
 ```powershell
 irm [https://raw.githubusercontent.com/](https://raw.githubusercontent.com/)<username>/<repo>/main/Optimize-Network.ps1 | iex
+
+
+
+Manual Execution:
+Download Optimize-Network.ps1.
+
+Right-click and choose Run with PowerShell (or run .\Optimize-Network.ps1 -DnsProvider Cloudflare).
