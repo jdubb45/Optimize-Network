@@ -25,7 +25,7 @@ if (-not ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 }
 
 Write-Host "==========================================" -ForegroundColor Cyan
-Write-Host "   Windows Network & Stream Optimizer    " -ForegroundColor Cyan
+Write-Host "   Windows Network & Stream Optimizer     " -ForegroundColor Cyan
 Write-Host "==========================================" -ForegroundColor Cyan
 
 # ---------------------------------------------------------
@@ -97,5 +97,10 @@ Write-Host "Current DNS on $($activeAdapter.Name):" -ForegroundColor Gray
 (Get-DnsClientServerAddress -InterfaceAlias $activeAdapter.Name -AddressFamily IPv4).ServerAddresses | ForEach-Object { Write-Host " - $_" -ForegroundColor Yellow }
 Write-Host "==========================================" -ForegroundColor Cyan
 
-Write-Host "`nPress any key to exit..."
-$null =$Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+# Safe exit pause (won't crash if invoked via non-interactive console or pipeline)
+try {
+    Write-Host "`nPress any key to exit..."
+    $null =$Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+} catch {
+    Start-Sleep -Seconds 3
+}
